@@ -2,6 +2,11 @@
 
 A simple, clean, and responsive blog template for Blogger/Blogspot.
 
+<img width="60%" alt="image" src="https://github.com/user-attachments/assets/1320687b-9fcb-4f6d-8fa0-72c6d73e13ac" />
+
+<img width="30%" alt="image" src="https://github.com/user-attachments/assets/12406737-d880-4c42-8def-1e5aeeee5e79" />
+
+
 ## Demo
 
 Check the live demo: [jasurlive.uz](https://jasurlive.uz)
