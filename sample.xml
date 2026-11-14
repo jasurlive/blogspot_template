@@ -411,16 +411,63 @@
       margin-bottom: 1em;
     }
 
+    /* Images: always fit the column width, keep aspect ratio, and never
+       get taller than the screen. !important beats Blogger's inline
+       width/height attributes and styles. */
     .item-page .post-body img,
     .modal-content img {
-      max-width: 100%;
-      height: auto;
+      display: block;
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 80vh;
+      margin: 0 auto;
+      object-fit: contain;
       border-radius: 10px;
     }
 
+    /* Blogger wrappers (separator divs, caption tables, floats) */
+    .item-page .post-body .separator,
+    .modal-content .separator,
     .item-page .post-body .separator a,
     .modal-content .separator a {
-      margin: 0 !important;
+      float: none !important;
+      clear: both;
+      margin: 0 auto 1em !important;
+      text-align: center;
+    }
+
+    .item-page .post-body table,
+    .modal-content table {
+      max-width: 100% !important;
+    }
+
+    .item-page .post-body .tr-caption-container,
+    .modal-content .tr-caption-container {
+      float: none !important;
+      width: auto !important;
+      margin: 0 auto 1em !important;
+    }
+
+    .item-page .post-body figure,
+    .modal-content figure,
+    .item-page .post-body video,
+    .modal-content video,
+    .item-page .post-body iframe,
+    .modal-content iframe {
+      max-width: 100% !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .item-page .post-body pre,
+    .modal-content pre {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .modal-scroll {
+      overflow-x: hidden;
     }
 
     /* ---------- Reader modal ---------- */
@@ -874,6 +921,15 @@
 
       /* ---------- Open / close ---------- */
       var current = null;   // post shown in the modal
+      var savedY = 0;       // page scroll position before the modal opened
+
+      // We restore the scroll ourselves; the browser's own restore on Back
+      // fights with the scroll lock and can jump to the top of the page.
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+      function restoreScroll() {
+        window.scrollTo(0, savedY);
+      }
       var lastCard = null;  // to return focus on close
 
       function fill(post) {
@@ -915,6 +971,7 @@
         var post = posts[id];
         if (!post) return;
         if (current !== post) fill(post);
+        if (!current) savedY = window.pageYOffset || root.scrollTop || 0;
         current = post;
         modal.classList.add("is-open");
         root.classList.add("modal-lock");
@@ -932,8 +989,12 @@
         modal.classList.remove("is-open");
         root.classList.remove("modal-lock");
         current = null;
+        restoreScroll();
         if (lastCard) lastCard.focus({ preventScroll: true });
         if (!fromHistory && history.state && history.state.post) history.back();
+        // Back runs async; re-apply once it has settled.
+        requestAnimationFrame(restoreScroll);
+        setTimeout(restoreScroll, 60);
       }
 
       document.addEventListener("click", function (e) {
