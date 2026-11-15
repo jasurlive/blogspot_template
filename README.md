@@ -9,7 +9,7 @@ A simple, clean, and responsive blog template for Blogger/Blogspot.
 
 ## Demo
 
-Check the live demo: [jasurlive.uz](https://jasurlive.uz)
+Check the live demo: [jasurlive.uz/blogs](https://jasurlive.uz/blogs)
 
 ## Features
 
@@ -21,22 +21,32 @@ Check the live demo: [jasurlive.uz](https://jasurlive.uz)
 - 7 themes from [django-react](https://github.com/jasurlive/django-react): light, dark, linen, fjord, matte, charcoal, paper
 - Sticky header and numbered pagination (1 2 3 … 10) instead of Newer/Older links
 
+## Files
+
+- `sample.xml` - the template. Posts are shown newest first.
+- `shuffle.xml` - same template, but posts are shuffled on every visit (new order on each reload).
+- `style.css` - the same CSS as in `sample.xml`, just to read and edit easily.
+
 ## How to Use
 
-1. Copy the content of `sample.xml` from this repo.
+1. Copy all `sample.xml` (or `shuffle.xml`).
 2. Paste it into a new Blogger/Blogspot HTML page or edit an existing one.
 3. Replace `<data:blog.title/>` with your blog title if needed.
 4. Customize colors, fonts, and layout via the `<b:skin>` CSS section.
 5. Publish and enjoy a minimal, responsive blog layout.
 
-Pagination: page numbers are built from your blog feed. Posts per page follow Settings → Posts → "Max posts shown on main page". Blogger's own Newer/Older/Home buttons are always hidden; if the feed can't load, simple prev/next arrows are shown instead.
+Posts per page follow Settings → Posts → "Max posts shown on main page". 
+Blogger's own stupid Newer/Older/Home buttons are always hidden; if the feed can't load, simple prev/next arrows are shown instead.
+
+Shuffle: on home and label pages all posts are loaded and mixed randomly. Page numbers switch pages without reloading, so the order stays the same while you browse. If the feed can't load, only the posts of the current page are shuffled.
 
 ## Notes
 
 - Theme sync when embedded in an iframe: the parent page can call `iframe.contentWindow.postMessage({ theme: "dark" }, "*")`.
 
 - Designed to be copy-paste ready for Blogspot.
-- IMPORTANT: Blogspot adds its trash xml and make it 1000 lines of code after saving (check full.xml, it has more than 1000 lines of trash code). It is okay. Save this xml somewhere and edit and paste and test according to your preferences.
+
+- IMPORTANT: Blogspot adds its trash xml and make it 1000 lines of code after saving. It is okay. Save this xml somewhere and edit and paste and test according to your preferences.
 
 ## License
 
