@@ -1,0 +1,1715 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://www.google.com/2005/gml/b"
+      xmlns:data="http://www.google.com/2005/gml/data"
+      xmlns:expr="http://www.google.com/2005/gml/expr">
+<head>
+  <title><data:blog.title/></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <b:skin><![CDATA[
+    /* ---------- Themes ----------
+       Same palettes as jasurlive/django-react (front/src/css/theme.css).
+       Set by <html data-theme="light|dark|linen|fjord|matte|charcoal|paper">. */
+    :root,
+    :root[data-theme='light'] {
+      color-scheme: light;
+      --bg: #eef2f7;
+      --bg-elev: #ffffff;
+      --surface: #f3f6fb;
+      --text: #1f2937;
+      --text-strong: #0f172a;
+      --muted: #5b6475;
+      --border: rgba(15, 23, 42, 0.12);
+      --hover: rgba(15, 23, 42, 0.05);
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-soft: rgba(37, 99, 235, 0.1);
+      --danger: #dc2626;
+      --shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    :root[data-theme='dark'] {
+      color-scheme: dark;
+      --bg: #080e1a;
+      --bg-elev: #0d1526;
+      --surface: #1a1e3c;
+      --text: #d1d5db;
+      --text-strong: #f1f5f9;
+      --muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.1);
+      --hover: rgba(255, 255, 255, 0.07);
+      --accent: #3b82f6;
+      --accent-hover: #2563eb;
+      --accent-soft: rgba(59, 130, 246, 0.14);
+      --danger: #f87171;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    }
+
+    /* warm off-white, oak/taupe accent */
+    :root[data-theme='linen'] {
+      color-scheme: light;
+      --bg: #f4f1ec;
+      --bg-elev: #fbfaf7;
+      --surface: #ece8e1;
+      --text: #3a3835;
+      --text-strong: #23211f;
+      --muted: #77726a;
+      --border: rgba(58, 56, 53, 0.12);
+      --hover: rgba(58, 56, 53, 0.05);
+      --accent: #7a6a56;
+      --accent-hover: #66584a;
+      --accent-soft: rgba(122, 106, 86, 0.12);
+      --danger: #b4534b;
+      --shadow: 0 6px 20px rgba(58, 56, 53, 0.06);
+    }
+
+    /* cool misty grey, muted slate-blue accent */
+    :root[data-theme='fjord'] {
+      color-scheme: light;
+      --bg: #eef1f3;
+      --bg-elev: #f8fafb;
+      --surface: #e4e9ec;
+      --text: #2f3a42;
+      --text-strong: #1c252c;
+      --muted: #6b7781;
+      --border: rgba(47, 58, 66, 0.12);
+      --hover: rgba(47, 58, 66, 0.05);
+      --accent: #4f6d7a;
+      --accent-hover: #3f5a66;
+      --accent-soft: rgba(79, 109, 122, 0.12);
+      --danger: #b0504a;
+      --shadow: 0 6px 20px rgba(47, 58, 66, 0.06);
+    }
+
+    /* matte: soft stone grey, low-glare, muted clay accent */
+    :root[data-theme='matte'] {
+      color-scheme: light;
+      --bg: #e8e6e3;
+      --bg-elev: #f0eeeb;
+      --surface: #e1dfdb;
+      --text: #3b3936;
+      --text-strong: #262422;
+      --muted: #75716b;
+      --border: rgba(59, 57, 54, 0.12);
+      --hover: rgba(59, 57, 54, 0.05);
+      --accent: #8a6f5e;
+      --accent-hover: #745c4d;
+      --accent-soft: rgba(138, 111, 94, 0.12);
+      --danger: #b0504a;
+      --shadow: 0 6px 20px rgba(59, 57, 54, 0.05);
+    }
+
+    /* charcoal dark */
+    :root[data-theme='charcoal'] {
+      color-scheme: dark;
+      --bg: #181818;
+      --bg-elev: #202020;
+      --surface: #292929;
+      --text: #d4d4d4;
+      --text-strong: #f5f5f5;
+      --muted: #999999;
+      --border: rgba(255, 255, 255, 0.09);
+      --hover: rgba(255, 255, 255, 0.06);
+      --accent: #a3a3a3;
+      --accent-hover: #d4d4d4;
+      --accent-soft: rgba(163, 163, 163, 0.12);
+      --danger: #ef7777;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    /* paper: monochrome off-white, black ink accent (light twin of charcoal) */
+    :root[data-theme='paper'] {
+      color-scheme: light;
+      --bg: #fafafa;
+      --bg-elev: #ffffff;
+      --surface: #f4f4f4;
+      --text: #111111;
+      --text-strong: #000000;
+      --muted: #6b6b6b;
+      --border: #e4e4e4;
+      --hover: rgba(17, 17, 17, 0.05);
+      --accent: #111111;
+      --accent-hover: #333333;
+      --accent-soft: rgba(17, 17, 17, 0.07);
+      --danger: #c0392b;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* No JS / no saved theme yet: follow the system */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        color-scheme: dark;
+        --bg: #080e1a;
+        --bg-elev: #0d1526;
+        --surface: #1a1e3c;
+        --text: #d1d5db;
+        --text-strong: #f1f5f9;
+        --muted: #9ca3af;
+        --border: rgba(255, 255, 255, 0.1);
+        --hover: rgba(255, 255, 255, 0.07);
+        --accent: #3b82f6;
+        --accent-hover: #2563eb;
+        --accent-soft: rgba(59, 130, 246, 0.14);
+        --shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      }
+    }
+
+    :root {
+      --radius: 14px;
+      --scroll: color-mix(in srgb, var(--muted) 45%, transparent);
+    }
+
+    /* ---------- Base ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.2s, color 0.2s;
+      line-height: 1.5;
+      color: var(--text);
+      background: var(--bg);
+    }
+
+    /* Thin scrollbars in the theme's colors */
+    * {
+      scrollbar-width: thin;
+      scrollbar-color: var(--scroll) transparent;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border: 2px solid transparent;
+      border-radius: 8px;
+      background: var(--scroll) padding-box;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted) padding-box;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent-hover);
+    }
+
+    svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1240px;
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    /* Blogger extras we never show */
+    h2.date-header,
+    .post-footer,
+    .blog-feeds,
+    .post-feeds {
+      display: none !important;
+    }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--bg);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      height: 56px;
+    }
+
+    .site-title {
+      overflow: hidden;
+      color: var(--text-strong);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    .site-title a {
+      color: inherit;
+    }
+
+    .icon-btn {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .icon-btn:hover,
+    .icon-btn:focus-visible {
+      background: var(--hover);
+      color: var(--accent-hover);
+      border-color: var(--accent-hover);
+    }
+
+    main {
+      flex: 1;
+      padding-block: 24px;
+    }
+
+    /* ---------- Post cards (home, labels, search) ---------- */
+    /* Equal-width cards; an incomplete last row is centered. */
+    #Blog1 > .blog-posts {
+      --cols: 4;
+      --gap: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--gap);
+    }
+
+    .index-page .post-outer {
+      flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+      min-width: 0;
+    }
+
+    .date-outer,
+    .date-posts {
+      display: contents;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg-elev);
+      color: var(--text);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      color: var(--text);
+    }
+
+    .card-img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: var(--border);
+    }
+
+    .card-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 6px;
+      padding: 12px 14px 14px;
+    }
+
+    .card-title,
+    .card-text {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow-wrap: anywhere;
+    }
+
+    .card-title {
+      color: var(--accent);
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .card-text {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .card-date {
+      margin-top: auto;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    /* ---------- Single post / page ---------- */
+    .item-page #Blog1 > .blog-posts {
+      display: block;
+    }
+
+    .item-page .post-outer {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .item-page .post-title {
+      margin-bottom: 20px;
+      color: var(--text-strong);
+      font-size: 1.6rem;
+      line-height: 1.3;
+    }
+
+    .item-page .post-body,
+    .modal-content {
+      font-size: 1.02rem;
+      line-height: 1.75;
+      overflow-wrap: anywhere;
+    }
+
+    .item-page .post-body p,
+    .modal-content p {
+      margin-bottom: 1em;
+    }
+
+    /* Images: always fit the column width, keep aspect ratio, and never
+       get taller than the screen. !important beats Blogger's inline
+       width/height attributes and styles. */
+    .item-page .post-body img,
+    .modal-content img {
+      display: block;
+      width: auto !important;
+      height: auto !important;
+      max-width: 100% !important;
+      max-height: 80vh;
+      margin: 0 auto;
+      object-fit: contain;
+      border-radius: 10px;
+    }
+
+    /* Blogger wrappers (separator divs, caption tables, floats) */
+    .item-page .post-body .separator,
+    .modal-content .separator,
+    .item-page .post-body .separator a,
+    .modal-content .separator a {
+      float: none !important;
+      clear: both;
+      margin: 0 auto 1em !important;
+      text-align: center;
+    }
+
+    .item-page .post-body table,
+    .modal-content table {
+      max-width: 100% !important;
+    }
+
+    .item-page .post-body .tr-caption-container,
+    .modal-content .tr-caption-container {
+      float: none !important;
+      width: auto !important;
+      margin: 0 auto 1em !important;
+    }
+
+    .item-page .post-body figure,
+    .modal-content figure,
+    .item-page .post-body video,
+    .modal-content video,
+    .item-page .post-body iframe,
+    .modal-content iframe {
+      max-width: 100% !important;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .item-page .post-body pre,
+    .modal-content pre {
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .modal-scroll {
+      overflow-x: hidden;
+    }
+
+    /* ---------- Reader modal ---------- */
+    .modal-lock,
+    .modal-lock body {
+      overflow: hidden;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      visibility: hidden;
+      pointer-events: none;
+      transition: visibility 0s 0.3s;
+    }
+
+    .modal.is-open {
+      visibility: visible;
+      pointer-events: auto;
+      transition-delay: 0s;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(10, 14, 12, 0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .modal.is-open .modal-backdrop {
+      opacity: 1;
+    }
+
+    .modal-sheet {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 760px;
+      max-height: 100%;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--bg-elev);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+      outline: none;
+      opacity: 0;
+      transform: translateY(16px) scale(0.98);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.25s;
+    }
+
+    .modal.is-open .modal-sheet {
+      opacity: 1;
+      transform: none;
+    }
+
+    .modal-sheet.is-dragging {
+      transition: none;
+    }
+
+    .modal-bar {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      padding: 18px 12px 8px;
+      cursor: grab;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .modal-sheet.is-dragging .modal-bar {
+      cursor: grabbing;
+    }
+
+    .modal-handle {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 40px;
+      height: 4px;
+      margin-left: -20px;
+      border-radius: 2px;
+      background: var(--muted);
+      opacity: 0.4;
+    }
+
+    .modal-scroll {
+      flex: 1;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      padding: 24px 32px 40px;
+    }
+
+    .modal-title {
+      color: var(--text-strong);
+      font-size: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .modal-date {
+      display: block;
+      margin: 6px 0 20px;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* Phones: bottom sheet */
+    @media (max-width: 640px) {
+      .modal {
+        align-items: flex-end;
+        padding: 0;
+      }
+
+      .modal-sheet {
+        height: calc(100% - 24px);
+        max-height: none;
+        border-width: 1px 0 0;
+        border-radius: 18px 18px 0 0;
+        opacity: 1;
+        transform: translateY(100%);
+      }
+
+      .modal-scroll {
+        padding: 4px 18px 32px;
+        padding-bottom: calc(32px + env(safe-area-inset-bottom));
+      }
+
+      .modal-title {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .modal-sheet,
+      .modal-backdrop {
+        transition-duration: 0s;
+      }
+    }
+
+    /* ---------- Pagination ---------- */
+    /* Blogger's own Newer / Older / Home / Mobile links are never shown;
+       the script replaces them with page numbers (or prev/next arrows). */
+    #blog-pager {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin: 32px 0 0;
+      overflow: visible;
+    }
+
+    #blog-pager > :not(.np):not(.np-info) {
+      display: none !important;
+    }
+
+    .np {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .np > * {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 38px;
+      height: 38px;
+      padding: 0 10px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-elev);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .np > a:hover,
+    .np > a:focus-visible {
+      border-color: var(--accent-hover);
+      background: var(--hover);
+    }
+
+    .np .np-current {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .np .np-gap {
+      min-width: 20px;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--muted);
+    }
+
+    .np .np-disabled {
+      color: var(--muted);
+      opacity: 0.45;
+    }
+
+    .np-info {
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 1024px) {
+      #Blog1 > .blog-posts {
+        --cols: 3;
+      }
+    }
+
+    @media (max-width: 760px) {
+      #Blog1 > .blog-posts {
+        --cols: 2;
+        --gap: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .wrap {
+        padding-inline: 14px;
+      }
+
+      main {
+        padding-block: 16px;
+      }
+
+      .card-img {
+        aspect-ratio: 4 / 3;
+      }
+
+      #Blog1 > .blog-posts {
+        --cols: 1;
+      }
+
+      .item-page .post-title {
+        font-size: 1.35rem;
+      }
+
+      .np {
+        gap: 4px;
+      }
+
+      .np > * {
+        min-width: 34px;
+        height: 34px;
+        padding: 0 8px;
+      }
+
+      .np .np-gap {
+        min-width: 14px;
+      }
+    }
+
+    /* ---------- Shuffle ---------- */
+    /* Posts stay hidden until they are shuffled, so there is no jump. */
+    #Blog1 > .blog-posts {
+      transition: opacity 0.25s;
+    }
+
+    #Blog1 > .blog-posts.is-shuffling {
+      opacity: 0;
+    }
+
+    /* Page buttons (pages are switched in place) look like the links */
+    .np > button {
+      font: inherit;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .np > button:hover,
+    .np > button:focus-visible {
+      border-color: var(--accent-hover);
+      background: var(--hover);
+      color: var(--accent-hover);
+    }
+
+    .modal-loading {
+      color: var(--muted);
+    }
+  ]]></b:skin>
+
+  <script type="text/javascript">
+//<![CDATA[
+    /* Set the theme before first paint (same logic as django-react's index.html). */
+    window.THEMES = ["light", "dark", "linen", "fjord", "matte", "charcoal", "paper"];
+    (function () {
+      var theme = null;
+      try { theme = localStorage.getItem("theme"); } catch (e) {}
+      if (window.THEMES.indexOf(theme) < 0) {
+        theme = window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches ?
+          "dark" : "light";
+      }
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+//]]>
+  </script>
+</head>
+
+<body expr:class='data:view.isSingleItem ? "item-page" : "index-page"'
+      expr:data-np-home='data:blog.homepageUrl'
+      expr:data-np-type='data:blog.pageType'
+      expr:data-np-label='data:blog.searchLabel'
+      expr:data-np-query='data:blog.searchQuery'>
+  <header>
+    <div class="wrap">
+      <h1 class="site-title"><a expr:href="data:blog.homepageUrl">jasur's blogs in the attic</a></h1>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Color theme"></button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <b:section id="main" class="main" showaddelement="yes">
+      <b:widget id="Blog1" type="Blog" version="2" locked="true"/>
+    </b:section>
+  </main>
+
+  <footer>
+    &#169; <data:blog.title/> &#183; Designed by jasurlive
+  </footer>
+
+  <script type="text/javascript">
+//<![CDATA[
+    /* JSONP loader for Blogger feeds (works from any domain, even in the editor preview). */
+    window.blogJsonp = (function () {
+      var id = 0;
+      return function (url, ok, fail) {
+        var name = "blogJsonp" + (++id) + "_" + Date.now();
+        var s = document.createElement("script");
+        function finish(cb, arg) {
+          try { delete window[name]; } catch (e) { window[name] = undefined; }
+          if (s.parentNode) s.parentNode.removeChild(s);
+          if (cb) cb(arg);
+        }
+        window[name] = function (json) { finish(ok, json); };
+        s.onerror = function () { finish(fail); };
+        s.src = url + (url.indexOf("?") < 0 ? "?" : "&") + "callback=" + name;
+        document.body.appendChild(s);
+      };
+    })();
+
+    /*
+     * Post cards + reader modal.
+     * On list pages Blogger outputs each full post. We turn each one into a
+     * small card and keep its content, so clicking a card opens the post in
+     * a modal right here, without leaving the page.
+     *   Close: X button, Esc, backdrop click, browser/phone back,
+     *   swipe down (touch) or drag the top bar down (mouse).
+     */
+    (function () {
+      var body = document.body;
+      if (!body.classList.contains("index-page")) return;
+
+      var root = document.documentElement;
+      var home = body.getAttribute("data-np-home") || location.origin + "/";
+      if (location.protocol === "https:") home = home.replace(/^http:/, "https:");
+
+      function el(tag, cls, text) {
+        var e = document.createElement(tag);
+        if (cls) e.className = cls;
+        if (text) e.textContent = text;
+        return e;
+      }
+
+      // Ask Blogger's image server for a 600px square instead of the full image.
+      function sized(url) {
+        if (!/googleusercontent\.com|bp\.blogspot\.com/.test(url)) return url;
+        if (/\/[sw]\d+[^\/]*\/[^\/]+$/.test(url)) {
+          return url.replace(/\/[sw]\d+[^\/]*\/([^\/]+)$/, "/s600-c/$1");
+        }
+        if (/\/img\/a\//.test(url)) return url.replace(/=[^\/]*$/, "") + "=s600-c";
+        return url;
+      }
+
+      // Fisher-Yates on a copy.
+      function shuffle(arr) {
+        var a = arr.slice();
+        for (var i = a.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      }
+
+      /* ---------- Cards ---------- */
+      var posts = {};
+      var list = document.querySelector("#Blog1 > .blog-posts");
+
+      function makeCard(post) {
+        var card = el("a", "card");
+        card.href = post.url;
+        card.setAttribute("data-post", post.id);
+
+        var cover = el("div", "card-img");
+        if (post.image) {
+          cover = el("img", "card-img");
+          cover.src = sized(post.image);
+          cover.alt = "";
+          cover.loading = "lazy";
+          cover.decoding = "async";
+          cover.onerror = function () {
+            this.parentNode.replaceChild(el("div", "card-img"), this);
+          };
+        }
+        card.appendChild(cover);
+
+        var info = el("div", "card-body");
+        info.appendChild(el("h2", "card-title", post.title));
+        if (post.text) info.appendChild(el("p", "card-text", post.text.slice(0, 220)));
+        if (post.date) info.appendChild(el("time", "card-date", post.date));
+        card.appendChild(info);
+        return card;
+      }
+
+      function render(arr) {
+        list.innerHTML = "";
+        for (var i = 0; i < arr.length; i++) {
+          var outer = el("div", "post-outer");
+          outer.appendChild(makeCard(arr[i]));
+          list.appendChild(outer);
+        }
+      }
+
+      var pagePosts = [];
+      var outers = document.querySelectorAll(".post-outer");
+      for (var i = 0; i < outers.length; i++) {
+        var outer = outers[i];
+        var link = outer.querySelector(".post-title a");
+        if (!link) continue;
+        var idMeta = outer.querySelector('meta[itemprop="postId"]');
+        var image = outer.querySelector('meta[itemprop="image_url"]');
+        var content = outer.querySelector(".post-body");
+        var date = outer.querySelector("abbr.published");
+        var post = {
+          id: idMeta ? idMeta.content : String(i),
+          url: link.href,
+          title: link.textContent.trim(),
+          date: date ? date.textContent.trim() : "",
+          image: image && image.content,
+          text: content ? content.textContent.replace(/\s+/g, " ").trim() : "",
+          content: content,
+          partial: !!outer.querySelector(".jump-link")
+        };
+        posts[post.id] = post;
+        pagePosts.push(post);
+      }
+
+      // Shuffle this page's posts right away; on home and label pages they
+      // are replaced by all posts, shuffled (see "Shuffle all posts" below).
+      if (list && pagePosts.length) render(shuffle(pagePosts));
+
+      /* ---------- Modal markup ---------- */
+      var modal = el("div", "modal");
+      var backdrop = el("div", "modal-backdrop");
+      var sheet = el("article", "modal-sheet");
+      sheet.setAttribute("role", "dialog");
+      sheet.setAttribute("aria-modal", "true");
+      sheet.setAttribute("aria-labelledby", "modal-title");
+      sheet.tabIndex = -1;
+
+      var bar = el("div", "modal-bar");
+      bar.title = "Drag down to close";
+      bar.appendChild(el("span", "modal-handle"));
+      var closeBtn = el("button", "icon-btn");
+      closeBtn.type = "button";
+      closeBtn.setAttribute("aria-label", "Close");
+      closeBtn.title = "Close";
+      closeBtn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' +
+        '<path d="M6 6l12 12M18 6L6 18"/></svg>';
+      bar.appendChild(closeBtn);
+
+      var scroller = el("div", "modal-scroll");
+      var titleEl = el("h2", "modal-title");
+      titleEl.id = "modal-title";
+      var dateEl = el("time", "modal-date");
+      var contentEl = el("div", "post-body modal-content");
+      scroller.appendChild(titleEl);
+      scroller.appendChild(dateEl);
+      scroller.appendChild(contentEl);
+
+      sheet.appendChild(bar);
+      sheet.appendChild(scroller);
+      modal.appendChild(backdrop);
+      modal.appendChild(sheet);
+      body.appendChild(modal);
+
+      /* ---------- Open / close ---------- */
+      var current = null;   // post shown in the modal
+      var savedY = 0;       // page scroll position before the modal opened
+
+      // We restore the scroll ourselves; the browser's own restore on Back
+      // fights with the scroll lock and can jump to the top of the page.
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+
+      function restoreScroll() {
+        window.scrollTo(0, savedY);
+      }
+      var lastCard = null;  // to return focus on close
+
+      function fill(post) {
+        titleEl.textContent = post.title;
+        dateEl.textContent = post.date;
+        contentEl.innerHTML = "";
+        if (post.content) contentEl.appendChild(post.content.cloneNode(true));
+        else contentEl.appendChild(el("p", "modal-loading", "Loading…"));
+
+        var links = contentEl.querySelectorAll("a[href]");
+        for (var i = 0; i < links.length; i++) {
+          var a = links[i];
+          if (a.querySelector("img")) {
+            // Images are just images: drop the link to the full-size file.
+            while (a.firstChild) a.parentNode.insertBefore(a.firstChild, a);
+            a.parentNode.removeChild(a);
+          } else {
+            a.target = "_blank";
+            a.rel = "noopener";
+          }
+        }
+        scroller.scrollTop = 0;
+
+        // Post cut by a "Read more" break: load the full text from the feed.
+        if (post.partial && !post.loading) {
+          post.loading = true;
+          var loadFailed = function () {
+            post.loading = false;
+            if (current !== post || post.content) return;
+            contentEl.innerHTML = "";
+            var p = el("p", "modal-loading", "Couldn't load this post. ");
+            var a = el("a", "", "Open it");
+            a.href = post.url;
+            p.appendChild(a);
+            contentEl.appendChild(p);
+          };
+          window.blogJsonp(home + "feeds/posts/default/" + post.id + "?alt=json-in-script",
+            function (json) {
+              var full = el("div", "post-body");
+              try {
+                full.innerHTML = json.entry.content.$t;
+              } catch (e) {
+                return loadFailed();
+              }
+              post.content = full;
+              post.partial = false;
+              if (current === post) fill(post);
+            },
+            loadFailed);
+        }
+      }
+
+      function open(id, fromHistory) {
+        var post = posts[id];
+        if (!post) return;
+        if (current !== post) fill(post);
+        if (!current) savedY = window.pageYOffset || root.scrollTop || 0;
+        current = post;
+        modal.classList.add("is-open");
+        root.classList.add("modal-lock");
+        sheet.focus({ preventScroll: true });
+        if (!fromHistory) {
+          // One history entry while reading, so Back always closes the modal.
+          var replace = history.state && history.state.post;
+          history[replace ? "replaceState" : "pushState"]({ post: id }, "", "#post-" + id);
+        }
+      }
+
+      // Only touch history when the user closed it (not when they pressed Back).
+      function close(fromHistory) {
+        if (!current) return;
+        modal.classList.remove("is-open");
+        root.classList.remove("modal-lock");
+        current = null;
+        restoreScroll();
+        if (lastCard) lastCard.focus({ preventScroll: true });
+        if (!fromHistory && history.state && history.state.post) history.back();
+        // Back runs async; re-apply once it has settled.
+        requestAnimationFrame(restoreScroll);
+        setTimeout(restoreScroll, 60);
+      }
+
+      document.addEventListener("click", function (e) {
+        var card = e.target.closest ? e.target.closest("a.card[data-post]") : null;
+        // Let ctrl/cmd/shift/middle clicks open the post in a new tab as usual.
+        if (!card || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+        e.preventDefault();
+        lastCard = card;
+        open(card.getAttribute("data-post"));
+      });
+
+      closeBtn.addEventListener("click", function () { close(); });
+      backdrop.addEventListener("click", function () { close(); });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && current) close();
+      });
+
+      window.addEventListener("popstate", function (e) {
+        if (e.state && e.state.post) open(e.state.post, true);
+        else close(true);
+      });
+
+      // Shared link to a post on this page (#post-123): open it directly.
+      function openFromHash() {
+        var m = location.hash.match(/^#post-(\d+)$/);
+        if (m && posts[m[1]] && !current) {
+          history.replaceState({ post: m[1] }, "", location.hash);
+          open(m[1], true);
+        }
+      }
+      openFromHash();
+
+      /* ---------- Shuffle all posts ----------
+       * Home and label pages: load every post from the feed, shuffle them
+       * once per visit and page through them right here, without reloading,
+       * so the order stays the same while browsing. A new visit (or a
+       * reload) gives a new order. If the feed can't load, only the posts
+       * of this page are shuffled and Blogger's own pages are used.
+       */
+      (function () {
+        var pageType = body.getAttribute("data-np-type") || "";
+        var label = body.getAttribute("data-np-label") || "";
+        var query = body.getAttribute("data-np-query") || "";
+        if (!list || pageType !== "index" || query) return;
+        window.blogShuffle = true; // the pagination script leaves the pager to us
+
+        var FEED_CHUNK = 150; // Blogger caps feed results per request
+        var CACHE_MS = 5 * 60 * 1000;
+        var base = home.charAt(home.length - 1) === "/" ? home : home + "/";
+        var feedUrl = base + "feeds/posts/summary" +
+          (label ? "/-/" + encodeURIComponent(label) : "");
+        var perPage = pagePosts.length || 10;
+        var order = [], page = 1;
+        var CHEVRON = {
+          prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
+          next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>'
+        };
+
+        var pager = document.getElementById("blog-pager");
+        if (!pager) {
+          pager = el("div", "blog-pager");
+          pager.id = "blog-pager";
+          list.parentNode.insertBefore(pager, list.nextSibling);
+        }
+
+        // Feed entry -> plain object (what we cache).
+        function entryItem(e) {
+          var url = "";
+          for (var i = 0; i < (e.link || []).length; i++) {
+            if (e.link[i].rel === "alternate") url = e.link[i].href;
+          }
+          var d = new Date(e.published.$t);
+          return {
+            id: (e.id.$t.match(/post-(\d+)$/) || [])[1],
+            url: url,
+            title: e.title.$t,
+            date: isNaN(d) ? "" : d.toLocaleDateString(undefined,
+              { year: "numeric", month: "long", day: "numeric" }),
+            image: e.media$thumbnail ? e.media$thumbnail.url : "",
+            text: e.summary ? e.summary.$t.replace(/\s+/g, " ").trim() : ""
+          };
+        }
+
+        // Posts already on this page keep their loaded content.
+        function toPost(item) {
+          if (!posts[item.id]) {
+            posts[item.id] = {
+              id: item.id, url: item.url, title: item.title, date: item.date,
+              image: item.image, text: item.text, content: null, partial: true
+            };
+          }
+          return posts[item.id];
+        }
+
+        function fetchAll(start, acc, ok, fail) {
+          window.blogJsonp(feedUrl + "?alt=json-in-script&max-results=" + FEED_CHUNK +
+            "&start-index=" + start, function (json) {
+            try {
+              var entries = json.feed.entry || [];
+              var total = parseInt(json.feed.openSearch$totalResults.$t, 10);
+              for (var i = 0; i < entries.length; i++) acc.push(entryItem(entries[i]));
+              if (entries.length === FEED_CHUNK && acc.length < total) {
+                fetchAll(start + FEED_CHUNK, acc, ok, fail);
+              } else {
+                ok(acc);
+              }
+            } catch (e) {
+              fail();
+            }
+          }, fail);
+        }
+
+        function readCache() {
+          try {
+            var c = JSON.parse(sessionStorage.getItem("shuffle:" + feedUrl));
+            if (c && Date.now() - c.t < CACHE_MS) return c.d;
+          } catch (e) {}
+          return null;
+        }
+
+        function writeCache(items) {
+          try {
+            sessionStorage.setItem("shuffle:" + feedUrl,
+              JSON.stringify({ t: Date.now(), d: items }));
+          } catch (e) {}
+        }
+
+        // Always the same number of slots, so the bar keeps its width.
+        function pageList(cur, last, siblings) {
+          var out = [], p;
+          var slots = siblings * 2 + 5; // first, gap, window, gap, last
+          if (last <= slots) {
+            for (p = 1; p <= last; p++) out.push(p);
+          } else if (cur <= siblings + 3) {
+            for (p = 1; p <= slots - 2; p++) out.push(p);
+            out.push(null, last);
+          } else if (cur >= last - siblings - 2) {
+            out.push(1, null);
+            for (p = last - slots + 3; p <= last; p++) out.push(p);
+          } else {
+            out.push(1, null);
+            for (p = cur - siblings; p <= cur + siblings; p++) out.push(p);
+            out.push(null, last);
+          }
+          return out;
+        }
+
+        function narrow() {
+          return (pager.clientWidth || window.innerWidth) < 480 ? 1 : 2;
+        }
+
+        function renderPager() {
+          var old = pager.querySelectorAll(".np, .np-info");
+          for (var i = 0; i < old.length; i++) pager.removeChild(old[i]);
+          var last = Math.ceil(order.length / perPage);
+          if (last <= 1) {
+            pager.style.display = "none";
+            return;
+          }
+          pager.style.display = "";
+          pager.classList.add("np-ready");
+
+          var nav = el("nav", "np");
+          nav.setAttribute("aria-label", "Pagination");
+          function button(n, cls, html, aria) {
+            var b = el("button", cls);
+            b.type = "button";
+            b.setAttribute("data-page", n);
+            b.setAttribute("aria-label", aria);
+            b.innerHTML = html;
+            nav.appendChild(b);
+          }
+          function disabled(html) {
+            var s = el("span", "np-arrow np-disabled");
+            s.setAttribute("aria-hidden", "true");
+            s.innerHTML = html;
+            nav.appendChild(s);
+          }
+
+          if (page > 1) button(page - 1, "np-arrow", CHEVRON.prev, "Previous page");
+          else disabled(CHEVRON.prev);
+          var nums = pageList(page, last, narrow());
+          for (i = 0; i < nums.length; i++) {
+            var n = nums[i];
+            if (n === null) {
+              var gap = el("span", "np-gap", "…");
+              gap.setAttribute("aria-hidden", "true");
+              nav.appendChild(gap);
+            } else if (n === page) {
+              var cur = el("span", "np-current", String(n));
+              cur.setAttribute("aria-current", "page");
+              nav.appendChild(cur);
+            } else {
+              button(n, "np-num", String(n), "Page " + n);
+            }
+          }
+          if (page < last) button(page + 1, "np-arrow", CHEVRON.next, "Next page");
+          else disabled(CHEVRON.next);
+
+          pager.appendChild(nav);
+          pager.appendChild(el("p", "np-info", "Page " + page + " of " + last));
+        }
+
+        function go(n, scroll) {
+          page = n;
+          render(order.slice((n - 1) * perPage, n * perPage));
+          renderPager();
+          if (scroll) {
+            var top = list.getBoundingClientRect().top + window.pageYOffset - 80;
+            window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+          }
+        }
+
+        pager.addEventListener("click", function (e) {
+          var b = e.target.closest ? e.target.closest("button[data-page]") : null;
+          if (b) go(parseInt(b.getAttribute("data-page"), 10), true);
+        });
+
+        var siblings = narrow(), resizeTimer;
+        window.addEventListener("resize", function () {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function () {
+            if (!order.length || narrow() === siblings) return;
+            siblings = narrow();
+            renderPager();
+          }, 150);
+        });
+
+        // Hide the posts until the shuffled list is ready (or we give up).
+        var settled = false;
+        list.classList.add("is-shuffling");
+        function reveal() {
+          list.classList.remove("is-shuffling");
+        }
+        var timeout = setTimeout(function () {
+          settled = true;
+          reveal();
+        }, 5000);
+
+        function ready(items) {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timeout);
+          var all = [];
+          for (var i = 0; i < items.length; i++) {
+            if (items[i].id) all.push(toPost(items[i]));
+          }
+          if (all.length) {
+            order = shuffle(all);
+            go(1, false);
+            openFromHash(); // shared link to a post that wasn't on this page
+          }
+          reveal();
+        }
+
+        function failed() {
+          settled = true;
+          clearTimeout(timeout);
+          reveal();
+        }
+
+        var cached = readCache();
+        if (cached) return ready(cached);
+        fetchAll(1, [], function (items) {
+          writeCache(items);
+          ready(items);
+        }, failed);
+      })();
+
+      /* ---------- Drag down to close ----------
+       * Touch: swipe down from the top bar, or from the text when it is
+       * scrolled to the top. Mouse: hold the top bar and drag down.
+       */
+      var startY = 0, lastY = 0, lastT = 0, speed = 0, armed = false, dragging = false;
+
+      function dragStart(y, allowed) {
+        startY = lastY = y;
+        lastT = Date.now();
+        speed = 0;
+        armed = allowed;
+        dragging = false;
+      }
+
+      // Returns true while the sheet is being dragged (caller then blocks scrolling).
+      function dragMove(y) {
+        if (!armed) return false;
+        var dy = y - startY;
+        if (!dragging) {
+          if (dy < 6) {
+            if (dy < 0) armed = false; // moving up = normal scrolling
+            return false;
+          }
+          dragging = true;
+          sheet.classList.add("is-dragging");
+        }
+        var now = Date.now();
+        speed = (y - lastY) / Math.max(1, now - lastT);
+        lastY = y;
+        lastT = now;
+        sheet.style.transform = "translateY(" + Math.max(0, dy) + "px)";
+        backdrop.style.opacity = String(Math.max(0, 1 - dy / sheet.offsetHeight));
+        return true;
+      }
+
+      function dragEnd() {
+        armed = false;
+        if (!dragging) return;
+        dragging = false;
+        var dy = lastY - startY;
+        sheet.classList.remove("is-dragging");
+        sheet.style.transform = "";
+        backdrop.style.opacity = "";
+        // Far enough, or a quick flick: close. Otherwise snap back.
+        if (dy > Math.min(160, sheet.offsetHeight * 0.25) || (dy > 60 && speed > 0.6)) close();
+      }
+
+      sheet.addEventListener("touchstart", function (e) {
+        if (e.touches.length !== 1) return;
+        dragStart(e.touches[0].clientY,
+          bar.contains(e.target) || scroller.scrollTop <= 0);
+      }, { passive: true });
+
+      sheet.addEventListener("touchmove", function (e) {
+        if (dragMove(e.touches[0].clientY)) e.preventDefault();
+      }, { passive: false });
+
+      sheet.addEventListener("touchend", dragEnd);
+      sheet.addEventListener("touchcancel", dragEnd);
+
+      bar.addEventListener("mousedown", function (e) {
+        if (e.button !== 0 || closeBtn.contains(e.target)) return;
+        e.preventDefault(); // no text selection while dragging
+        dragStart(e.clientY, true);
+        function move(ev) { dragMove(ev.clientY); }
+        function up() {
+          document.removeEventListener("mousemove", move);
+          document.removeEventListener("mouseup", up);
+          dragEnd();
+        }
+        document.addEventListener("mousemove", move);
+        document.addEventListener("mouseup", up);
+      });
+    })();
+//]]>
+  </script>
+
+  <script type="text/javascript">
+//<![CDATA[
+    /*
+     * Theme toggle: cycles light -> dark -> linen -> fjord -> matte -> charcoal
+     * -> paper, with the same Feather icons as django-react's ThemeIcons.
+     * A page embedding this blog in an iframe can sync its theme with:
+     *   iframe.contentWindow.postMessage({ theme: "dark" }, "*")
+     */
+    (function () {
+      var root = document.documentElement;
+      var button = document.getElementById("theme-toggle");
+      var THEMES = window.THEMES;
+      var ICONS = {
+        light: '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42' +
+          'M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>',
+        dark: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+        linen: '<path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><path d="M16 8L2 22M17.5 15H9"/>',
+        fjord: '<path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>',
+        matte: '<path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/>',
+        charcoal: '<circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48' +
+          'M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/>',
+        paper: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>' +
+          '<path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>'
+      };
+
+      function name(t) {
+        return t.charAt(0).toUpperCase() + t.slice(1);
+      }
+
+      function current() {
+        var t = root.getAttribute("data-theme");
+        return THEMES.indexOf(t) < 0 ? "light" : t;
+      }
+
+      function render() {
+        var t = current();
+        var next = THEMES[(THEMES.indexOf(t) + 1) % THEMES.length];
+        var label = "Theme: " + name(t) + " (next: " + name(next) + ")";
+        button.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">' + ICONS[t] + "</svg>";
+        button.title = label;
+        button.setAttribute("aria-label", label);
+      }
+
+      function setTheme(t, save) {
+        if (THEMES.indexOf(t) < 0) return;
+        root.setAttribute("data-theme", t);
+        if (save) {
+          try { localStorage.setItem("theme", t); } catch (e) {}
+        }
+        render();
+      }
+
+      button.addEventListener("click", function () {
+        setTheme(THEMES[(THEMES.indexOf(current()) + 1) % THEMES.length], true);
+      });
+
+      window.addEventListener("message", function (e) {
+        if (e.data && typeof e.data.theme === "string") setTheme(e.data.theme, false);
+      });
+
+      render();
+    })();
+//]]>
+  </script>
+
+  <script type="text/javascript">
+//<![CDATA[
+    /*
+     * Numbered pagination for Blogger.
+     * Blogger only gives Newer/Older links, so we read the post feed,
+     * work out where every page starts, and link to each page with the
+     * same URL format Blogger uses: /search?updated-max=DATE&max-results=N
+     * (updated-max is exclusive: the page shows posts published before DATE).
+     *
+     * The blog address and page type come from Blogger (data-np-* on <body>),
+     * not from location, so it also works in the theme editor preview, in an
+     * iframe on another site, and on custom domains. The feed is loaded with
+     * JSONP, which works cross-origin.
+     *
+     * Home and label pages get page numbers. Everything else (posts, search,
+     * archives) or a failed feed load gets plain ‹ › arrows built from
+     * Blogger's own Newer/Older links.
+     */
+    (function () {
+      var FEED_CHUNK = 150; // Blogger caps feed results per request
+      var CACHE_MS = 5 * 60 * 1000;
+      var body = document.body;
+      var pager = document.getElementById("blog-pager");
+      if (!pager) return;
+
+      var params = new URLSearchParams(location.search);
+      var home = body.getAttribute("data-np-home") || location.origin + "/";
+      // Avoid mixed content when the page itself is on https.
+      if (location.protocol === "https:") home = home.replace(/^http:/, "https:");
+      if (home.charAt(home.length - 1) !== "/") home += "/";
+      var pageType = body.getAttribute("data-np-type") || "";
+      var label = body.getAttribute("data-np-label") || "";
+      var query = body.getAttribute("data-np-query") || "";
+      var mobile = params.get("m") === "1" ? "&m=1" : "";
+
+      var labelPath = label ? encodeURIComponent(label) : "";
+      var feedUrl = home + "feeds/posts/summary" + (label ? "/-/" + labelPath : "");
+      var pageBase = home + "search" + (label ? "/label/" + labelPath : "");
+      var perPage = parseInt(params.get("max-results"), 10) ||
+        document.querySelectorAll(".post-outer").length;
+      // "+" in the timezone may come back as a space if the URL wasn't encoded.
+      var updatedMax = (params.get("updated-max") || "").replace(/ /g, "+");
+
+      function el(tag, cls, text, attrs) {
+        var e = document.createElement(tag);
+        e.className = cls;
+        e.textContent = text;
+        for (var k in attrs || {}) e.setAttribute(k, attrs[k]);
+        return e;
+      }
+
+      var CHEVRON = {
+        prev: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>',
+        next: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>'
+      };
+
+      function arrow(nav, href, dir, rel, aria) {
+        var a = href ?
+          el("a", "np-arrow", "", { href: href, rel: rel, "aria-label": aria }) :
+          el("span", "np-arrow np-disabled", "", { "aria-hidden": "true" });
+        a.innerHTML = CHEVRON[dir];
+        nav.appendChild(a);
+      }
+
+      function show(nav, info) {
+        var old = pager.querySelectorAll(".np, .np-info");
+        for (var i = 0; i < old.length; i++) pager.removeChild(old[i]);
+        if (!nav) {
+          pager.style.display = "none";
+          return;
+        }
+        pager.style.display = "";
+        if (pager.className.indexOf("np-ready") < 0) pager.className += " np-ready";
+        pager.appendChild(nav);
+        if (info) pager.appendChild(el("p", "np-info", info));
+      }
+
+      // Fallback: prev/next arrows from Blogger's own Newer/Older links.
+      function renderArrows() {
+        var newer = pager.querySelector("a.blog-pager-newer-link");
+        var older = pager.querySelector("a.blog-pager-older-link");
+        if (!newer && !older) return show(null);
+        var item = pageType === "item" || pageType === "static_page";
+        var nav = el("nav", "np", "", { "aria-label": "Pagination" });
+        arrow(nav, newer && newer.href, "prev", "prev", item ? "Newer post" : "Newer posts");
+        arrow(nav, older && older.href, "next", "next", item ? "Older post" : "Older posts");
+        show(nav);
+      }
+
+      function readCache() {
+        try {
+          var c = JSON.parse(sessionStorage.getItem("np:" + feedUrl));
+          if (c && Date.now() - c.t < CACHE_MS) return c.d;
+        } catch (e) {}
+        return null;
+      }
+
+      function writeCache(dates) {
+        try {
+          sessionStorage.setItem("np:" + feedUrl,
+            JSON.stringify({ t: Date.now(), d: dates }));
+        } catch (e) {}
+      }
+
+      function fetchDates(start, acc, ok, fail) {
+        window.blogJsonp(feedUrl + "?alt=json-in-script&max-results=" + FEED_CHUNK +
+          "&start-index=" + start, function (json) {
+          try {
+            var entries = json.feed.entry || [];
+            var total = parseInt(json.feed.openSearch$totalResults.$t, 10);
+            for (var i = 0; i < entries.length; i++) acc.push(entries[i].published.$t);
+            if (entries.length === FEED_CHUNK && acc.length < total) {
+              fetchDates(start + FEED_CHUNK, acc, ok, fail);
+            } else {
+              ok(acc);
+            }
+          } catch (e) {
+            fail();
+          }
+        }, fail);
+      }
+
+      // Same format Blogger's own Older link uses: drop milliseconds.
+      function stamp(published) {
+        return published.replace(/\.\d+/, "");
+      }
+
+      function pageUrl(n, dates) {
+        if (n === 1) {
+          if (label) return pageBase + "?max-results=" + perPage + mobile;
+          return home + (mobile ? "?m=1" : "");
+        }
+        var lastOfPrev = dates[(n - 1) * perPage - 1];
+        return pageBase + "?updated-max=" + encodeURIComponent(stamp(lastOfPrev)) +
+          "&max-results=" + perPage + mobile;
+      }
+
+      function currentPage(dates) {
+        if (!updatedMax) return 1;
+        var limit = Date.parse(updatedMax);
+        if (isNaN(limit)) return 1;
+        for (var i = 0; i < dates.length; i++) {
+          if (Date.parse(dates[i]) < limit) return Math.floor(i / perPage) + 1;
+        }
+        return Math.ceil(dates.length / perPage);
+      }
+
+      // Always the same number of slots, so the bar keeps its width.
+      function pageList(cur, last, siblings) {
+        var out = [], p;
+        var slots = siblings * 2 + 5; // first, gap, window, gap, last
+        if (last <= slots) {
+          for (p = 1; p <= last; p++) out.push(p);
+        } else if (cur <= siblings + 3) {
+          for (p = 1; p <= slots - 2; p++) out.push(p);
+          out.push(null, last);
+        } else if (cur >= last - siblings - 2) {
+          out.push(1, null);
+          for (p = last - slots + 3; p <= last; p++) out.push(p);
+        } else {
+          out.push(1, null);
+          for (p = cur - siblings; p <= cur + siblings; p++) out.push(p);
+          out.push(null, last);
+        }
+        return out;
+      }
+
+      function narrow() {
+        return (pager.clientWidth || window.innerWidth) < 480 ? 1 : 2;
+      }
+
+      function renderNumbers(dates) {
+        var last = Math.ceil(dates.length / perPage);
+        if (last <= 1) return show(null);
+        var cur = Math.min(currentPage(dates), last);
+        var list = pageList(cur, last, narrow());
+        var nav = el("nav", "np", "", { "aria-label": "Pagination" });
+
+        arrow(nav, cur > 1 && pageUrl(cur - 1, dates), "prev", "prev", "Previous page");
+        for (var i = 0; i < list.length; i++) {
+          var n = list[i];
+          if (n === null) {
+            nav.appendChild(el("span", "np-gap", "\u2026", { "aria-hidden": "true" }));
+          } else if (n === cur) {
+            nav.appendChild(el("span", "np-current", String(n), { "aria-current": "page" }));
+          } else {
+            nav.appendChild(el("a", "np-num", String(n),
+              { href: pageUrl(n, dates), "aria-label": "Page " + n }));
+          }
+        }
+        arrow(nav, cur < last && pageUrl(cur + 1, dates), "next", "next", "Next page");
+        show(nav, "Page " + cur + " of " + last);
+      }
+
+      // Shuffle mode builds its own page numbers once all posts are loaded;
+      // until then (or if the feed fails) Blogger's arrows are shown.
+      var numbered = !window.blogShuffle && pageType === "index" && !query && perPage > 0;
+      if (!numbered) return renderArrows();
+
+      function start(dates) {
+        renderNumbers(dates);
+        var s = narrow(), timer;
+        window.addEventListener("resize", function () {
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            if (narrow() !== s) {
+              s = narrow();
+              renderNumbers(dates);
+            }
+          }, 150);
+        });
+      }
+
+      var cached = readCache();
+      if (cached) return start(cached);
+
+      // Show arrows right away; swap in page numbers when the feed arrives.
+      renderArrows();
+      var gaveUp = false;
+      var timeout = setTimeout(function () { gaveUp = true; }, 8000);
+      fetchDates(1, [], function (dates) {
+        clearTimeout(timeout);
+        if (gaveUp) return;
+        writeCache(dates);
+        start(dates);
+      }, function () {
+        clearTimeout(timeout);
+      });
+    })();
+//]]>
+  </script>
+</body>
+</html>
