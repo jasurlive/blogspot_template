@@ -20,6 +20,8 @@ Check the live demo: [jasurlive.uz/blogs](https://jasurlive.uz/blogs)
 - Posts open in a reader modal: swipe down (phone) or drag the top bar down (mouse) to close, or X / Esc / Back
 - 7 themes from [django-react](https://github.com/jasurlive/django-react): light, dark, linen, fjord, matte, charcoal, paper
 - Sticky header and numbered pagination (1 2 3 … 10) instead of Newer/Older links
+- Favicon badge next to the site title
+- Custom 404 page with a "Back to home" button
 
 ## Files
 
