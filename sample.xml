@@ -825,6 +825,15 @@
         return e;
       }
 
+      // Plain snippet text: decode leftover entities like "&nbsp;", collapse
+      // whitespace, and drop it entirely if nothing real is left.
+      var decoder = document.createElement("textarea");
+      function cleanText(s) {
+        if (!s) return "";
+        decoder.innerHTML = s.replace(/</g, "&lt;");
+        return decoder.value.replace(/[\s\u00a0\u200b\ufeff]+/g, " ").trim();
+      }
+
       // Ask Blogger's image server for a 600px square instead of the full image.
       function sized(url) {
         if (!/googleusercontent\.com|bp\.blogspot\.com/.test(url)) return url;
@@ -875,7 +884,7 @@
 
         var info = el("div", "card-body");
         info.appendChild(el("h2", "card-title", post.title));
-        var text = content ? content.textContent.replace(/\s+/g, " ").trim() : "";
+        var text = content ? cleanText(content.textContent) : "";
         if (text) info.appendChild(el("p", "card-text", text.slice(0, 220)));
         if (post.date) info.appendChild(el("time", "card-date", post.date));
         card.appendChild(info);

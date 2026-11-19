@@ -855,6 +855,15 @@
         return e;
       }
 
+      // Plain snippet text: decode leftover entities like "&nbsp;", collapse
+      // whitespace, and drop it entirely if nothing real is left.
+      var decoder = document.createElement("textarea");
+      function cleanText(s) {
+        if (!s) return "";
+        decoder.innerHTML = s.replace(/</g, "&lt;");
+        return decoder.value.replace(/[\s\u00a0\u200b\ufeff]+/g, " ").trim();
+      }
+
       // Ask Blogger's image server for a 600px square instead of the full image.
       function sized(url) {
         if (!/googleusercontent\.com|bp\.blogspot\.com/.test(url)) return url;
@@ -930,7 +939,7 @@
           title: link.textContent.trim(),
           date: date ? date.textContent.trim() : "",
           image: image && image.content,
-          text: content ? content.textContent.replace(/\s+/g, " ").trim() : "",
+          text: content ? cleanText(content.textContent) : "",
           content: content,
           partial: !!outer.querySelector(".jump-link")
         };
@@ -1148,7 +1157,7 @@
             date: isNaN(d) ? "" : d.toLocaleDateString(undefined,
               { year: "numeric", month: "long", day: "numeric" }),
             image: e.media$thumbnail ? e.media$thumbnail.url : "",
-            text: e.summary ? e.summary.$t.replace(/\s+/g, " ").trim() : ""
+            text: e.summary ? cleanText(e.summary.$t) : ""
           };
         }
 
